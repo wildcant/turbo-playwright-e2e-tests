@@ -11,6 +11,8 @@ env:
   PG_PASSWORD: postgres
   PG_PORT: 5433
   PG_USER: postgres
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
 jobs:
   be:
@@ -25,11 +27,8 @@ jobs:
       - name: 🏗 Setup monorepo
         uses: ./.github/actions/setup-monorepo
 
-      - name: ✅ Lint packages
-        run: pnpm run -w lint
-
       - name: 👷 Build packages
-        run: pnpm run -w build
+        run: pnpm --filter be build
 
       - name: Start BE
         run: pnpm --filter be start

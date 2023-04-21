@@ -9,3 +9,8 @@ playwright e2e tests with turbo cache in dev (local server) & ci (github actions
 - [Using Turborepo with GitHub Actions](https://turbo.build/repo/docs/ci/github-actions)
 - [Database Initialization & Seeding](https://learn.cypress.io/advanced-cypress-concepts/database-initialization-and-seeding)
 - [wait-for-it](https://github.com/vishnubob/wait-for-it)
+
+### TODOs
+
+[ ] Research how to use pnpm cache.
+[ ] Research if it's possible to use turbo cache from node_modules instead of vercel.
