@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test.skip('fe should stablish connection with be', async ({ page, request }) => {
+test('fe should stablish connection with be', async ({ page, request }) => {
   console.log(await (await request.get(`http://127.0.0.1:4000/health`)).json())
 
   await page.goto('/')
