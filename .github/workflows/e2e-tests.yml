@@ -35,7 +35,7 @@ jobs:
         run: pnpx playwright install chromium
 
       - name: 🧪 Run e2e tests
-        run: pnpm run e2e:test:ci
+        run: pnpm run e2e:test
 
       - uses: actions/upload-artifact@v3
         if: always()
