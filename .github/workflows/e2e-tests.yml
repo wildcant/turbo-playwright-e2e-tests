@@ -1,0 +1,42 @@
+name: End to End Tests
+on:
+  push:
+    branches: [main]
+
+env:
+  API_SECRET: secretvalue
+  DATABASE_URL: postgres://postgres:postgres@localhost:5433/postgres
+  MONGO_URL: mongodb://127.0.0.1:27018/test
+  PG_HOST: 127.0.0.1
+  PG_NAME: postgres
+  PG_PASSWORD: postgres
+  PG_PORT: 5433
+  PG_USER: postgres
+
+jobs:
+  env:
+    TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+    TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/docker-compose
+
+      - uses: ./.github/actions/build
+
+      - name: Install Playwright Chromium Browser
+        run: pnpx playwright install chromium
+
+      - name: Run e2e tests
+        run: pnpm run e2e:test
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

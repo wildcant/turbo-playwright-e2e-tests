@@ -12,7 +12,6 @@ export default function Home() {
 
   return (
     <div>
-      <Button />
       <pre>{JSON.stringify(state, null, 2)}</pre>
     </div>
   )

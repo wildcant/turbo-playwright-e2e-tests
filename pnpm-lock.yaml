@@ -45,6 +45,7 @@ importers:
 
   apps/web:
     specifiers:
+      '@picocss/pico': ^1.5.9
       '@types/node': ^17.0.12
       '@types/react': ^18.0.22
       '@types/react-dom': ^18.0.7
@@ -56,6 +57,7 @@ importers:
       typescript: ^4.5.3
       ui: workspace:*
     dependencies:
+      '@picocss/pico': 1.5.9
       next: 13.3.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -508,6 +510,10 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+    dev: false
+
+  /@picocss/pico/1.5.9:
+    resolution: {integrity: sha512-zgckSi9Fy2LQ+OIEGo/o7hZzgCf28ldRb2k/wrWV1Y/7LHNMYilc5Z2MbQBb1cvO8U2a94vSF8jh80HQNFLwdg==}
     dev: false
 
   /@pkgr/utils/2.3.1:
