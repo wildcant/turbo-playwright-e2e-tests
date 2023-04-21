@@ -13,7 +13,7 @@ test.skip('fe should stablish connection with be', async ({ page, request }) => 
 })
 
 // TODO: Add docker compose to github actions
-test.only('should return ', async ({ page }) => {
+test('should return ', async ({ page }) => {
   await page.goto('/todos')
 
   const title = page.getByText('TODOs')
