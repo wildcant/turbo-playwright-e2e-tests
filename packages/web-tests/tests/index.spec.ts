@@ -12,7 +12,7 @@ test('fe should stablish connection with be', async ({ page }) => {
 test('should return ', async ({ page }) => {
   await page.goto('http://localhost:3000/todos')
 
-  const title = page.getByText('"TODOs"')
+  const title = page.getByText('TODOs')
 
   await expect(title).toBeVisible()
 })
