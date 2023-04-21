@@ -24,6 +24,9 @@ jobs:
       - name: 🏗 Setup docker compose
         uses: ./.github/actions/docker-compose
 
+      - name: 🏗 Start database containers
+        run: docker-compose up -d
+
       - name: 🏗 Setup monorepo
         uses: ./.github/actions/setup-monorepo
 
