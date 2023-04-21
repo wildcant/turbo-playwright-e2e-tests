@@ -3,6 +3,15 @@ name: Testing docker compose
 on:
   workflow_dispatch:
 
+env:
+  PG_URL: postgres://postgres:postgres@localhost:5433/postgres
+  MONGO_URL: mongodb://127.0.0.1:27018/test
+  PG_HOST: 127.0.0.1
+  PG_NAME: postgres
+  PG_PASSWORD: postgres
+  PG_PORT: 5433
+  PG_USER: postgres
+
 jobs:
   be:
     timeout-minutes: 60

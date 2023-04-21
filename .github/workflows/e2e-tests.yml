@@ -5,7 +5,7 @@ on:
 
 env:
   API_SECRET: secretvalue
-  DATABASE_URL: postgres://postgres:postgres@localhost:5433/postgres
+  PG_URL: postgres://postgres:postgres@localhost:5433/postgres
   MONGO_URL: mongodb://127.0.0.1:27018/test
   PG_HOST: 127.0.0.1
   PG_NAME: postgres
