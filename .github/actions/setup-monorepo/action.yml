@@ -1,0 +1,19 @@
+name: Setup monorepo
+description: Sets up the repository
+runs:
+  using: composite
+  steps:
+    - name: 🏗 Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 7
+
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        chace: 'pnpm'
+
+    - name: 📦 Install dependencies
+      shell: bash
+      run: pnpm install --prefer-offline --frozen-lockfile

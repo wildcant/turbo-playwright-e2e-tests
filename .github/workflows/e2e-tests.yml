@@ -22,14 +22,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/actions/docker-compose
+      - name: 🏗 Setup docker compose
+        uses: ./.github/actions/docker-compose
 
-      - uses: ./.github/actions/build
+      - name: 🏗 Setup monorepo
+        uses: ./.github/actions/setup-monorepo
 
-      - name: Install Playwright Chromium Browser
+      - name: 📦 Install Playwright Chromium Browser
         run: pnpx playwright install chromium
 
-      - name: Run e2e tests
+      - name: 🧪 Run e2e tests
         run: pnpm run e2e:test:ci
 
       - uses: actions/upload-artifact@v3
