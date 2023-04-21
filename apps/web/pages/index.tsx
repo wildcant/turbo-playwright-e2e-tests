@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Button } from 'ui'
 
 export default function Home() {
   const [state, setState] = useState()

@@ -9,6 +9,7 @@ playwright e2e tests with turbo cache in dev (local server) & ci (github actions
 - [Using Turborepo with GitHub Actions](https://turbo.build/repo/docs/ci/github-actions)
 - [Database Initialization & Seeding](https://learn.cypress.io/advanced-cypress-concepts/database-initialization-and-seeding)
 - [wait-for-it](https://github.com/vishnubob/wait-for-it)
+- [Viewing Playwright traces](https://www.youtube.com/watch?v=lfxjs--9ZQs)
 
 ### TODOs
 
