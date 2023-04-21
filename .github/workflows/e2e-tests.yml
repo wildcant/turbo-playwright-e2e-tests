@@ -35,6 +35,9 @@ jobs:
       - name: 📦 Install Playwright Chromium Browser
         run: pnpx playwright install chromium
 
+      - name: 🏗 Seed databases
+        run: pnpm run -w db:seed
+
       - name: 🧪 Run e2e tests
         run: pnpm run e2e:test --trace on
 
