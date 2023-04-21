@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "ci": "turbo run build e2e:test lint",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "dev:test": "turbo run dev:test",
