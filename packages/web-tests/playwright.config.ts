@@ -74,11 +74,23 @@ export default defineConfig({
       command: 'pnpm --filter web start',
       url: 'http://127.0.0.1:3000',
       reuseExistingServer: !process.env.CI,
+      env: {
+        NEXT_PUBLIC_API_URL: 'http://127.0.0.1:4000',
+      },
     },
     {
       command: 'pnpm --filter be start',
       url: 'http://127.0.0.1:4000',
       reuseExistingServer: !process.env.CI,
+      env: {
+        API_SECRET: 'supersecretstring',
+        PG_USER: 'postgres',
+        PG_HOST: '127.0.0.1',
+        PG_PASSWORD: 'postgres',
+        PG_PORT: '5433',
+        PG_NAME: 'postgres',
+        MONGO_URL: 'mongodb://127.0.0.1:27018/test',
+      },
     },
   ],
 })

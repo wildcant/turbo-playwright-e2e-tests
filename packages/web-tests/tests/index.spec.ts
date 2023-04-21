@@ -1,11 +1,9 @@
 import { test, expect } from '@playwright/test'
 
-test('homepage has a button on it', async ({ page }) => {
+test('fe should stablish connection with be', async ({ page }) => {
   await page.goto('http://localhost:3000/')
 
-  const button = page.getByRole('button', { name: /Boop/ })
-  const apiResponse = page.getByText('Hello there')
+  const apiResponse = page.getByText('"status": "ok"')
 
-  await expect(button).toBeVisible()
   await expect(apiResponse).toBeVisible()
 })

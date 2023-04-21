@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Button } from 'ui'
 
-const API_URL = 'http://localhost:4000/'
-
-export default function Web() {
+export default function Home() {
   const [state, setState] = useState()
+
   useEffect(() => {
-    fetch(API_URL)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/health`)
       .then((r) => r.json())
       .then(setState)
   }, [])
