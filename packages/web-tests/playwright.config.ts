@@ -83,7 +83,6 @@ export default defineConfig({
       url: 'http://127.0.0.1:4000',
       reuseExistingServer: !process.env.CI,
       env: {
-        API_SECRET: 'supersecretstring',
         MONGO_URL: 'mongodb://127.0.0.1:27018/test',
         PG_HOST: '127.0.0.1',
         PG_NAME: 'postgres',

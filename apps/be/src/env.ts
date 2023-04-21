@@ -10,7 +10,6 @@ const envVariables = z.object({
   PG_PORT: z.coerce.number(),
   PG_NAME: z.string(),
   MONGO_URL: z.string(),
-  API_SECRET: z.string(),
 })
 
 export const env = envVariables.parse(process.env)
