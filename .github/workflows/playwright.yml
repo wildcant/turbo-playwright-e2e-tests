@@ -17,10 +17,10 @@ jobs:
           node-version: 16
           chace: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --prefer-offline --froze-lockfile
       - name: Install Playwright Browsers
         run: pnpx playwright install chromium
-      - name: Run Playwright tests
+      - name: Build, run e2e tests and lint
         run: pnpm run ci
         env:
           TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
