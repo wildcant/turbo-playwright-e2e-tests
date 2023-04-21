@@ -26,12 +26,22 @@ async function seedPg() {
 
   const client = await initPg()
 
+  await client.query(`CREATE TABLE users(  
+    id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(255),
+    username VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR(255),
+    website VARCHAR(255),
+    create_at DATE DEFAULT CURRENT_DATE
+);`)
+
   await client.query(query)
   console.log('Added users to postgres')
 }
 
 async function seed() {
-  await Promise.all([seedPg(), seedMongo()])
+  await Promise.all([seedPg(), seedMongo()]).catch(console.error)
   return
 }
 
