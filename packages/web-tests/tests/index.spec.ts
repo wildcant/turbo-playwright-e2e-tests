@@ -29,7 +29,7 @@ test('should display todos table', async ({ page }) => {
   await Promise.all(todos.map((todo) => expect(page.getByText(todo.title).first()).toBeVisible()))
 })
 
-test.only('should display users table', async ({ page }) => {
+test('should display users table', async ({ page }) => {
   const users = range(10).map((_) => createMock.user({ exclude: ['id'] }))
   await database.insert.users(users)
 
