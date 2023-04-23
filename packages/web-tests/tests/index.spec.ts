@@ -6,11 +6,13 @@ import { createMock } from './mocks'
 test.describe.configure({ mode: 'parallel' })
 
 test.beforeEach(async () => {
+  console.log(await database.health())
+
   await database.reset()
 })
 
 test('fe should stablish connection with be', async ({ page, request }) => {
-  console.log(await (await request.get(`${process.env.API_URL}/health`)).json())
+  console.log(await database.health())
   await page.goto('/')
 
   const apiResponse1 = page.getByText('status')

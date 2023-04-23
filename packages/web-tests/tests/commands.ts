@@ -6,6 +6,11 @@ const entity = z.enum(['users', 'todos'])
 type Entity = z.infer<typeof entity>
 
 export const database = {
+  health: async () => {
+    const browser = await chromium.launch()
+    const context = await browser.newContext()
+    return context.request.get(`${process.env.API_URL}/health`).then((r) => r.json())
+  },
   fetch: async (ent: Entity) => {
     const browser = await chromium.launch()
     const context = await browser.newContext()
@@ -14,7 +19,7 @@ export const database = {
   reset: async () => {
     const browser = await chromium.launch()
     const context = await browser.newContext()
-    return context.request.delete(`${process.env.API_URL}/databases/reset`).then((r) => r.json())
+    return context.request.delete(`${process.env.API_URL}/databases/reset`).then(console.log)
   },
   insert: {
     [entity.Values.users]: async (data: OptionalId<User>[]) => {

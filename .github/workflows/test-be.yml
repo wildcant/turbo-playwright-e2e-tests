@@ -1,0 +1,39 @@
+name: Start be in test env
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [main]
+
+env:
+  API_SECRET: supersecretstring
+  MONGO_URL: mongodb://127.0.0.1:27019/test
+  PG_HOST: localhost
+  PG_NAME: postgres
+  PG_PASSWORD: postgres
+  PG_PORT: 5434
+  PG_USER: postgres
+  PORT: 4000
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 🏗 Setup docker compose
+        uses: ./.github/actions/docker-compose
+
+      - name: 🏗 Start database containers
+        run: docker-compose -f docker-compose.test.yml up -d
+
+      - name: 🏗 Setup monorepo
+        uses: ./.github/actions/setup-monorepo
+
+      - name: Start BE
+        run: pnpm --filter be start:test
+
+      - name: Check server is running
+        run: curl 'http://localhost:4000/'

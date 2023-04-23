@@ -87,12 +87,27 @@ export default defineConfig({
       command: 'pnpm --filter web start:test',
       url: process.env.WEB_APP_URL,
       reuseExistingServer: !process.env.CI,
+      env: {
+        NEXT_PUBLIC_API_URL: 'http://127.0.0.1:4000',
+        NODE_ENV: 'test',
+      },
     },
     {
       command: 'pnpm --filter be start:test',
       url: process.env.API_URL,
       // We don't want to share db instances between test and development environments.
       reuseExistingServer: false,
+      env: {
+        API_SECRET: 'supersecretstring',
+        MONGO_URL: 'mongodb://127.0.0.1:27019/test',
+        PG_HOST: '127.0.0.1',
+        PG_NAME: 'postgres',
+        PG_PASSWORD: 'postgres',
+        PG_PORT: '5434',
+        PG_USER: 'postgres',
+        PORT: '4000',
+        NODE_ENV: 'test',
+      },
     },
   ],
 })
