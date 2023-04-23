@@ -38,8 +38,8 @@ pnpm i && pnpm db:init:test && pnpm test:e2e
 - [ ] Research if it's possible to use turbo cache from node_modules instead of vercel. I guess we won't be able to cache node_modules and turbo at the same time, unless the hash of the node_modules cache includes apps data 🤔
 
 - [ ] There's a weird issue after running `next dev` I'm not able to run `next start` again,
-      it's like the `next dev` command mutates the build so you no longer can use it with `next start` is this expected?
-      If `next dev` is mutating the build then the hash of the cache should change, so the next type you run `pnpm start:prod` it should re compute the build.
+      it's like the `next dev` command mutates the build so you are no longer able to use it with `next start` is this expected?
+      If `next dev` is mutating the build then the hash of the cache should change, so the next time you run `turbo run start:prod` it should re compute the build.
       Steps to reproduce:
   1. `pnpm clean && pnpm i && pnpm db:init:dev && pnpm build && pnpm start:prod`
   2. `pnpm start:dev`
