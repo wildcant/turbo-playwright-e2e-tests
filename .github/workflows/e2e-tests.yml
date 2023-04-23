@@ -33,13 +33,26 @@ jobs:
       - name: 🏗 Setup monorepo
         uses: ./.github/actions/setup-monorepo
 
-      - name: 📦 Install Playwright Chromium Browser
-        run: pnpx playwright install chromium
+      - name: 🏗 Store playwright version
+        run: echo "PLAYWRIGHT_VERSION=$(grep -oP '/@playwright/test/\K[0-9.]+(?=:)' ./pnpm-lock.yaml)" >> $GITHUB_ENV
+
+      - name: ♻️ Restore playwright binaries cache
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+
+      - name: 📦 Install playwright browsers if not in cache
+        run: pnpx playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
 
       - name: 🧪 Run e2e tests
         run: NODE_ENV=test pnpm db:migrate && pnpm run test:e2e --trace on
 
-      - uses: actions/upload-artifact@v3
+      - name: Generate playwright report
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: playwright-report
