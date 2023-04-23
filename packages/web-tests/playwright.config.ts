@@ -105,7 +105,7 @@ export default defineConfig({
         PG_PASSWORD: 'postgres',
         PG_PORT: '5434',
         PG_USER: 'postgres',
-        PORT: '4000',
+        API_PORT: '4000',
         NODE_ENV: 'test',
       },
     },

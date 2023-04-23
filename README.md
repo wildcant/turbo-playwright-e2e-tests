@@ -29,6 +29,7 @@ pnpm i && pnpm db:init:test && pnpm test:e2e
 - [Viewing Playwright traces](https://www.youtube.com/watch?v=lfxjs--9ZQs)
 - [Use parallelism and sharding](https://playwright.dev/docs/best-practices#use-parallelism-and-sharding)
 - [Two Ways of Test Isolation](https://playwright.dev/docs/browser-contexts#two-ways-of-test-isolation)
+- [Pnpm Continuous Integration](https://pnpm.io/continuous-integration#github-actions)
 
 ### TODOs
 

@@ -12,12 +12,12 @@ env:
   PG_PASSWORD: postgres
   PG_PORT: 5434
   PG_USER: postgres
-  PORT: 4000
+  API_PORT: 4000
   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
 jobs:
-  test:
+  test-be:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:

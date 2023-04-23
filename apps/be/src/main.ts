@@ -88,9 +88,9 @@ async function bootstrap() {
   })
   // }
 
-  await app.listen(env.PORT)
+  await app.listen(env.API_PORT)
 
-  console.log(`Server running at http://localhost:${env.PORT}`)
+  console.log(`Server running at http://localhost:${env.API_PORT}`)
 }
 
 bootstrap()
