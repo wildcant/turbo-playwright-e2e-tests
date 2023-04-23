@@ -1,0 +1,13 @@
+name: Test setup
+on:
+  workflow_dispatch:
+
+jobs:
+  test-setup:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 🏗 Setup monorepo
+        uses: ./.github/actions/setup-monorepo

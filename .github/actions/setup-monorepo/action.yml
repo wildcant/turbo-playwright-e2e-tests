@@ -8,12 +8,21 @@ runs:
       with:
         version: 7
 
-    - name: Setup Node
+    - name: 🏗 Setup Node
       uses: actions/setup-node@v3
       with:
         node-version: 16
         chace: 'pnpm'
 
+    - name: ♻️ Restore node_modules cache
+      uses: actions/cache@v3
+      id: node-modules-cache
+      with:
+        path: |
+          node_modules
+        key: modules-${{ hashFiles('pnpm-lock.yaml') }}
+
     - name: 📦 Install dependencies
       shell: bash
       run: pnpm install --prefer-offline --frozen-lockfile
+      if: steps.node-modules-cache.outputs.cache-hit != 'true'
