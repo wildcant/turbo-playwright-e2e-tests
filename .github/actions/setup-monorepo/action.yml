@@ -15,6 +15,12 @@ runs:
         chace: 'pnpm'
         cache-dependency-path: 'pnpm-lock.yaml'
 
+    - name: ♻️ Restore node_modules cache
+      uses: actions/cache@v2
+      with:
+      path: '**/node_modules'
+      key: ${{ runner.os }}-modules-${{ hashFiles('pnpm-lock.yaml') }}
+
     - name: 📦 Install dependencies
       shell: bash
       run: pnpm install --prefer-offline --frozen-lockfile
