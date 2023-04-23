@@ -1,23 +1,23 @@
 version: '3.8'
 services:
-  mongo:
+  mongo-test:
     image: mongo
     restart: always
     environment:
       MONGO_INITDB_DATABASE: test
     ports:
-      - 27018:27017
+      - 27019:27017
     volumes:
       - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
-  pg:
+  pg-test:
     image: postgres:14.1-alpine
     restart: always
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - '5433:5432'
+      - '5434:5432'
     volumes:
       - pg:/var/lib/postgresql/data
 volumes:

@@ -19,8 +19,9 @@ export default function Users() {
   }, [])
 
   return (
-    <main className="container" style={{ paddingBlock: 100 }}>
+    <main className="container" style={{ paddingBlock: 10 }}>
       <h1>Users</h1>
+      <p>Coming from no sql db</p>
       <table>
         <thead>
           <tr>

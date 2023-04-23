@@ -1,0 +1,21 @@
+{
+  "name": "schemas",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs --dts",
+    "start:dev": "tsup src/index.ts --format cjs --dts --watch",
+    "lint": "tsc"
+  },
+  "dependencies": {
+    "tsconfig": "workspace:*",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4",
+    "zod": "^3.21.4"
+  }
+}

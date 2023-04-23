@@ -1,10 +1,23 @@
 import { defineConfig, devices } from '@playwright/test'
+import path from 'path'
+import dotenv from 'dotenv'
+import z from 'zod'
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
+dotenv.config({ path: path.resolve(__dirname, '.env.test') })
+
+const envVariables = z.object({
+  API_URL: z.string(),
+  WEB_APP_URL: z.string(),
+  CI: z.boolean().optional(),
+})
+
+envVariables.parse(process.env)
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv extends z.infer<typeof envVariables> {}
+  }
+}
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -24,7 +37,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://127.0.0.1:3000',
+    baseURL: process.env.WEB_APP_URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -71,25 +84,15 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: [
     {
-      command: 'pnpm --filter web start',
-      url: 'http://127.0.0.1:3000',
+      command: 'pnpm --filter web start:test',
+      url: process.env.WEB_APP_URL,
       reuseExistingServer: !process.env.CI,
-      env: {
-        NEXT_PUBLIC_API_URL: 'http://127.0.0.1:4000',
-      },
     },
     {
-      command: 'pnpm --filter be start',
-      url: 'http://127.0.0.1:4000',
-      reuseExistingServer: !process.env.CI,
-      env: {
-        MONGO_URL: 'mongodb://127.0.0.1:27018/test',
-        PG_HOST: '127.0.0.1',
-        PG_NAME: 'postgres',
-        PG_PASSWORD: 'postgres',
-        PG_PORT: '5433',
-        PG_USER: 'postgres',
-      },
+      command: 'pnpm --filter be start:test',
+      url: process.env.API_URL,
+      // We don't want to share db instances between test and development environments.
+      reuseExistingServer: false,
     },
   ],
 })

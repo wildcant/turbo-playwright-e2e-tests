@@ -16,8 +16,9 @@ export default function Todos() {
   }, [])
 
   return (
-    <main className="container" style={{ paddingBlock: 100 }}>
+    <main className="container" style={{ paddingBlock: 10 }}>
       <h1>TODOs</h1>
+      <p>Coming from sql db</p>
       <table>
         <thead>
           <tr>

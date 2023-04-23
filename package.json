@@ -2,14 +2,15 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
-    "start": "turbo run start",
-    "dev:test": "turbo run dev:test",
-    "db:seed": "pnpm --filter be db:seed",
-    "e2e:test": "turbo run e2e:test",
-    "lint": "turbo run lint",
+    "clean": "find . -name node_modules -o -name .next -o -name .expo -o -name .turbo -o -name dist -type d -prune | xargs rm -rf && find . -name tsconfig.tsbuildinfo | xargs rm -f",
+    "db:init:dev": "docker-compose up -d && echo 'Waiting a few seconds for DBs to start...' && sleep 5 && turbo run db:migrate && turbo run db:seed",
+    "db:init:test": "docker-compose -f docker-compose.test.yml up -d && echo 'Waiting a few seconds for DBs to start...' && sleep 5 && NODE_ENV=test turbo run db:migrate",
+    "start:dev": "turbo run start:dev",
+    "start:test": "turbo run start:test",
+    "start:prod": "turbo run start:prod",
+    "test:e2e": "turbo run build --filter web && turbo run test:e2e",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "clean": "find . -name node_modules -o -name .next -o -name .expo -o -name .turbo -o -name dist -type d -prune | xargs rm -rf && find . -name tsconfig.tsbuildinfo | xargs rm -f"
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

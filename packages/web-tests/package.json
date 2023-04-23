@@ -4,19 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:test": "playwright test",
-    "e2e:test": "playwright test"
+    "test:e2e": "playwright test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.32.3",
-    "web": "workspace:*",
+    "@types/lodash": "^4.14.194",
     "be": "workspace:*"
   },
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@types/lodash.range": "^3.2.7",
     "@types/node": "^17.0.12",
-    "typescript": "^5.0.4"
+    "dotenv": "^16.0.3",
+    "lodash": "^4.17.21",
+    "schemas": "workspace:*",
+    "typescript": "^5.0.4",
+    "zod": "^3.21.4"
   }
 }

@@ -10,7 +10,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div>
+    <div className="container">
       <pre>{JSON.stringify(state, null, 2)}</pre>
     </div>
   )

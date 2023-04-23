@@ -3,20 +3,35 @@
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
     "build": {
-      "outputs": [".next/**", "!.next/cache/**", "./dist/**"],
-      "env": ["NEXT_PUBLIC_API_URL"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "build/**"],
+      "env": ["NEXT_PUBLIC_API_URL"],
+      "dependsOn": ["^build"]
     },
-    "lint": {},
-    "dev": {
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "start:dev": {
+      "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
     },
-    "start": {},
-    "dev:test": {
+    "start:prod": {
+      "dependsOn": ["^build"]
+    },
+    "start:test": {},
+    "test:e2e": {
+      "dependsOn": ["^build"]
+    },
+    "clean": {
       "cache": false
     },
-    "e2e:test": {
-      "dependsOn": ["^build"]
+    "db:migrate": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
+    "db:seed": {
+      "dependsOn": ["^build"],
+      "cache": false
     }
   }
 }

@@ -1,10 +1,7 @@
-import { env } from '../env'
 import { MongoClient } from 'mongodb'
-
-type MongoTodo = {
-  title: string
-  completed: boolean
-}
+import { Todo, seed } from 'schemas'
+import { env } from 'env'
+import { OptionalObjectId } from 'schemas'
 
 export async function initMongo() {
   const client = new MongoClient(env.MONGO_URL)
@@ -13,8 +10,14 @@ export async function initMongo() {
 
   return {
     database,
-    todos: database.collection<MongoTodo>('reservations'),
+    todos: database.collection<OptionalObjectId<Todo>>('todos'),
   }
 }
 
 export type Mongo = Awaited<ReturnType<typeof initMongo>>
+
+export async function seedMongo() {
+  const mongo = await initMongo()
+  await mongo.todos.insertMany(seed.todos)
+  console.log('Added todos to mongo db')
+}

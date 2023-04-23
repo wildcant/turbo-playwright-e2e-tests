@@ -1,5 +1,15 @@
 {
+  "exclude": [
+    "node_modules"
+  ],
   "extends": "tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "jsx": "preserve"
+  },
+  "include": [
+    "src",
+    "next-env.d.ts"
+  ]
 }
