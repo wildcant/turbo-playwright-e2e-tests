@@ -9,6 +9,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: 🏗 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          chace: 'pnpm'
+
       - name: Playwright version
         run: echo "PLAYWRIGHT_VERSION=$(grep -oP '/@playwright/test/\K[0-9.]+(?=:)' ./pnpm-lock.yaml)" >> $GITHUB_ENV
 

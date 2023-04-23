@@ -37,7 +37,7 @@ jobs:
         run: pnpx playwright install chromium
 
       - name: 🧪 Run e2e tests
-        run: pnpm run test:e2e --trace on
+        run: NODE_ENV=test pnpm db:migrate && pnpm run test:e2e --trace on
 
       - uses: actions/upload-artifact@v3
         if: always()
