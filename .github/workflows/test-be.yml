@@ -33,7 +33,7 @@ jobs:
         uses: ./.github/actions/setup-monorepo
 
       - name: Start BE
-        run: pnpm --filter be start:test
+        run: pnpm turbo run build --filter be && pnpm --filter be start:test
 
       - name: Check server is running
         run: curl 'http://localhost:4000/'
