@@ -25,7 +25,7 @@ async function bootstrap() {
   const isTestEnvironment =
     process.env.NODE_ENV === 'test' &&
     env.MONGO_URL === 'mongodb://127.0.0.1:27019/test' &&
-    env.PG_HOST === 'localhost'
+    env.PG_HOST === '127.0.0.1'
 
   if (isTestEnvironment) {
     app.post('/database/seed', (_, res) => {

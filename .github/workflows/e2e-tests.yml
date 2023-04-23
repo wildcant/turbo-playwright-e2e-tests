@@ -7,14 +7,14 @@ on:
 env:
   API_SECRET: supersecretstring
   MONGO_URL: mongodb://127.0.0.1:27019/test
-  PG_HOST: localhost
+  PG_HOST: 127.0.0.1
   PG_NAME: postgres
   PG_PASSWORD: postgres
   PG_PORT: 5434
   PG_USER: postgres
   API_PORT: 4000
   NODE_ENV: test
-  NEXT_PUBLIC_API_URL: http://localhost:4000
+  NEXT_PUBLIC_API_URL: http://127.0.0.1:4000
   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
