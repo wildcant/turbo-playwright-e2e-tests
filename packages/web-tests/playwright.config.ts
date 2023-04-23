@@ -8,7 +8,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env.test') })
 const envVariables = z.object({
   API_URL: z.string(),
   WEB_APP_URL: z.string(),
-  CI: z.boolean().optional(),
+  CI: z.coerce.boolean().optional(),
 })
 
 envVariables.parse(process.env)
