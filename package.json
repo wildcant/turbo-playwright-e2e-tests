@@ -6,7 +6,6 @@
     "db:init:dev": "docker-compose up -d && echo 'Waiting a few seconds for DBs to start...' && sleep 5 && turbo run db:migrate && turbo run db:seed",
     "db:init:test": "docker-compose -f docker-compose.test.yml up -d && echo 'Waiting a few seconds for DBs to start...' && sleep 5 && NODE_ENV=test turbo run db:migrate",
     "start:dev": "turbo run start:dev",
-    "start:test": "turbo run start:test",
     "start:prod": "turbo run start:prod",
     "test:e2e": "turbo run build --filter web && turbo run test:e2e",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
