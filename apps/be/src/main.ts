@@ -22,11 +22,12 @@ async function bootstrap() {
     .get('/users', async (_, res) => res.send({ users: (await pg.client.query('SELECT * FROM users')).rows }))
     .get('/todos', async (_, res) => res.send({ todos: await mongo.todos.find().toArray() }))
 
-  if (
+  const isTestEnvironment =
     process.env.NODE_ENV === 'test' &&
     env.MONGO_URL === 'mongodb://127.0.0.1:27019/test' &&
     env.PG_HOST === 'localhost'
-  ) {
+
+  if (isTestEnvironment) {
     app.post('/database/seed', (_, res) => {
       seedDatabase()
       res.sendStatus(200)
