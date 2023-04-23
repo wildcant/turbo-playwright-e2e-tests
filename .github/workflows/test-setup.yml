@@ -1,0 +1,16 @@
+name: Test e2e
+on:
+  workflow_dispatch:
+
+jobs:
+  test-e2e:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 🏗 Setup monorepo
+        uses: ./.github/actions/setup-monorepo
+
+      - name: Build
+        run: pnpm build
