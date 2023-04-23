@@ -35,9 +35,7 @@ pnpm i && pnpm db:init:test && pnpm test:e2e
 
 ### TODOs
 
-- [ ] Research how to use pnpm cache.
-
-- [ ] Research if it's possible to use turbo cache from node_modules instead of vercel.
+- [ ] Research if it's possible to use turbo cache from node_modules instead of vercel. I guess we won't be able to cache node_modules and turbo at the same time, unless the hash of the node_modules cache includes apps data 🤔
 
 - [ ] There's a weird issue after running `next dev` I'm not able to run `next start` again,
       it's like the `next dev` command mutates the build so you no longer can use it with `next start` is this expected?

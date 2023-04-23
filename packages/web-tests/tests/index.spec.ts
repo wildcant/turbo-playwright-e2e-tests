@@ -6,12 +6,10 @@ import { createMock } from './mocks'
 test.describe.configure({ mode: 'parallel' })
 
 test.beforeEach(async () => {
-  console.log(await database.health())
-
   await database.reset()
 })
 
-test('fe should stablish connection with be', async ({ page, request }) => {
+test('fe should stablish connection with be', async ({ page }) => {
   console.log(await database.health())
   await page.goto('/')
 
