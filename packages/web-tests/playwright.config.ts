@@ -12,6 +12,22 @@ const envVariables = z.object({
 })
 
 envVariables.parse(process.env)
+console.log(process.env)
+console.log({
+  webServerConfig: [
+    {
+      command: 'pnpm --filter web start:test',
+      url: process.env.WEB_APP_URL,
+      reuseExistingServer: !process.env.CI,
+    },
+    {
+      command: 'pnpm --filter be start:test',
+      url: process.env.API_URL,
+      // We don't want to share db instances between test and development environments.
+      reuseExistingServer: false,
+    },
+  ],
+})
 
 declare global {
   namespace NodeJS {
